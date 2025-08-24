@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Peintre en Bâtiment – Votre partenaire peinture & rénovation</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="img/logo_ayoub-removebg-preview.png"
+    />
+    <meta
+      name="description"
+      content="Peintre en bâtiment: peinture intérieure/extérieure, ravalement de façades, enduits décoratifs, papier peint. Devis gratuit et intervention rapide."
+    />
+    <meta name="color-scheme" content="light only" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #ffffff;
+        --muted: #64748b;
+        --brand: #2563eb;
+        --brand-2: #0ea5e9;
+        --accent: #f59e0b;
+        --ok: #22c55e;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        color: #0b1220;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .container {
+        width: min(1100px, 92%);
+        margin-inline: auto;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.1rem;
+        border-radius: 14px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        transition: 0.2s ease;
+        background: var(--brand);
+        color: #fff;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        filter: saturate(1.1);
+      }
+      .btn-outline {
+        background: #fff;
+        color: var(--brand);
+        border-color: var(--brand);
+      }
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 50;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .badge {
+        display: inline-flex;
+        gap: 0.35rem;
+        align-items: center;
+        background: #eef2ff;
+        color: #3730a3;
+        border: 1px solid #c7d2fe;
+        padding: 0.25rem 0.5rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .menu {
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+      }
+      .menu a {
+        color: #0b1220;
+        font-weight: 600;
+      }
+      .menu a:hover {
+        color: var(--brand);
+      }
+      .hamburger {
+        display: none;
+        background: none;
+        border: 0;
+        font-size: 1.7rem;
+      }
+      @media (max-width: 900px) {
+        .menu {
+          display: none;
+          position: fixed;
+          inset: 64px 0 auto 0;
+          background: #fff;
+          border-bottom: 1px solid #e2e8f0;
+          padding: 1rem 0.75rem;
+        }
+        .menu.open {
+          display: grid;
+          gap: 1rem;
+        }
+        .hamburger {
+          display: block;
+        }
+      }
+      /* Hero */
+      .hero {
+        position: relative;
+        isolation: isolate;
+        background: linear-gradient(
+          120deg,
+          var(--brand) 0%,
+          var(--brand-2) 60%,
+          #38bdf8 100%
+        );
+        color: #fff;
+      }
+      .hero .wrap {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 2rem;
+        align-items: center;
+        padding: 64px 0;
+      }
+      .hero h1 {
+        font-size: clamp(1.9rem, 3.8vw, 3rem);
+        line-height: 1.1;
+        margin: 0 0 12px;
+      }
+      .hero p {
+        font-size: 1.05rem;
+        opacity: 0.95;
+        margin: 0 0 20px;
+      }
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 18px;
+      }
+      .kpi {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 16px;
+        padding: 14px;
+      }
+      .kpi strong {
+        font-size: 1.35rem;
+      }
+      .hero-card {
+        background: #fff;
+        color: #0b1220;
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 12px 30px rgba(2, 6, 23, 0.25);
+      }
+      .hero-card h3 {
+        margin: 0 0 8px;
+      }
+      .hero-card form {
+        display: grid;
+        gap: 0.6rem;
+      }
+      .hero-card input,
+      .hero-card textarea,
+      .hero-card select {
+        width: 100%;
+        padding: 0.85rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        font: inherit;
+      }
+      .hero-card small {
+        color: var(--muted);
+      }
+      /* Sections */
+      section {
+        padding: 64px 0;
+      }
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 28px;
+      }
+      h2 {
+        font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+        margin: 0;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      /* Services */
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+      .g-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .g-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: 900px) {
+        .g-3,
+        .g-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 6px 16px rgba(2, 6, 23, 0.06);
+      }
+      .card h3 {
+        margin: 0 0 6px;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.55rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        color: #0b1220;
+        background: #f8fafc;
+      }
+      /* Portfolio */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .gallery figure {
+        margin: 0;
+        overflow: hidden;
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+      }
+      .gallery img {
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        transition: transform 0.35s ease;
+      }
+      .gallery figure:hover img {
+        transform: scale(1.03);
+      }
+      /* Testimonials */
+      .quote {
+        display: flex;
+        gap: 14px;
+      }
+      .quote .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #e2e8f0;
+      }
+      blockquote {
+        margin: 0;
+      }
+      /* CTA band */
+      .cta {
+        background: linear-gradient(90deg, #fef08a, #fde68a, #facc15);
+      }
+      .cta .wrap {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 1rem;
+      }
+      @media (max-width: 900px) {
+        .hero .wrap,
+        .cta .wrap {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* Footer */
+      footer {
+        background: #0f172a;
+        color: #cbd5e1;
+      }
+      footer a {
+        color: #e2e8f0;
+      }
+      .cols {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 18px;
+      }
+      @media (max-width: 900px) {
+        .cols {
+          grid-template-columns: 1fr;
+        }
+      }
+      .legal {
+        border-top: 1px solid #1f2937;
+        padding: 14px 0;
+        margin-top: 28px;
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+    </style>
+    <!-- LocalBusiness (HousePainter) JSON-LD for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HousePainter",
+        "name": "Peintre en Bâtiment",
+        "description": "Peinture intérieure, extérieure, façades et revêtements décoratifs. Devis gratuit.",
+        "areaServed": "Casablanca et régions",
+        "telephone": "+212-631-76-56-93",
+        "email": "naciriayoub437@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Casablanca",
+          "addressCountry": "MA"
+        },
+        "openingHours": ["Mo-Sa 08:30-19:00"],
+        "url": "https://votre-domaine.ma"
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <img src="img/logo_ayoub-removebg-preview.png" width="80" alt="" />
+          <strong>HomePainting</strong>
+          <span class="badge" aria-label="Devis gratuit"
+            ><span>★</span> Devis gratuit</span
+          >
+        </div>
+        <nav>
+          <button class="hamburger" aria-label="Menu" id="btnMenu">☰</button>
+          <div class="menu" id="menu">
+            <a href="#services">Services</a>
+            <a href="#portfolio">Réalisations</a>
+            <a href="#avis">Avis</a>
+            <a href="#contact">Contact</a>
+            <a class="btn" href="#devis">Demander un devis</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section
+      class="hero"
+      id="devis"
+      style="
+        background: url('img/background.jpg') center/cover no-repeat;
+        color: white;
+        position: relative;
+      "
+    >
+      <div class="container wrap" style="position: relative; z-index: 2">
+        <div>
+          <h1>Donnez une nouvelle vie à vos murs.</h1>
+          <p>
+            Peinture intérieure & extérieure, ravalement de façade, enduits
+            décoratifs. Travail propre, finitions soignées, délais respectés.
+          </p>
+          <div class="kpis" role="list" aria-label="Chiffres clés">
+            <div class="kpi" role="listitem">
+              <strong>7+ ans</strong>
+              <div class="muted">d'expérience</div>
+            </div>
+            <div class="kpi" role="listitem">
+              <strong>250+</strong>
+              <div class="muted">chantiers livrés</div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 18px;
+              display: flex;
+              gap: 0.6rem;
+              flex-wrap: wrap;
+            "
+          >
+            <a class="btn" href="#contact">Obtenir un devis</a>
+            <a
+              class="btn btn-outline"
+              href="https://wa.me/212631765693"
+              target="_blank"
+              rel="noopener"
+              >WhatsApp direct</a
+            >
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Formulaire rapide">
+          <h3>Devis en 24h</h3>
+          <form id="quickForm">
+            <label
+              >Nom*<input name="name" required autocomplete="name"
+            /></label>
+            <label
+              >Téléphone*<input
+                name="phone"
+                required
+                inputmode="tel"
+                autocomplete="tel"
+            /></label>
+            <label
+              >Ville<select name="city">
+                <option>Casablanca</option>
+                <option>Rabat</option>
+                <option>Marrakech</option>
+                <option>Autre</option>
+              </select></label
+            >
+            <label
+              >Description du projet<textarea
+                name="message"
+                rows="3"
+                placeholder="Appartement 80m², peinture satinée blanche, petites fissures à réparer..."
+              ></textarea>
+            </label>
+            <button class="btn" type="submit">Envoyer la demande</button>
+            <small>En cliquant, vous acceptez d'être recontacté.</small>
+          </form>
+        </aside>
+      </div>
+      <!-- Overlay sombre pour lisibilité du texte -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 1;
+        "
+      ></div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Nos services</h2>
+          <p class="muted">
+            Des prestations complètes pour vos intérieurs et extérieurs.
+          </p>
+        </div>
+        <div class="grid g-3">
+          <article class="card">
+            <h3>Peinture intérieure</h3>
+            <p class="muted">
+              Murs, plafonds, boiseries. Finitions mate, satinée ou velours.
+              Protection et nettoyage inclus.
+            </p>
+            <span class="chip">▶ À partir de 60 DH/m²</span>
+          </article>
+          <article class="card">
+            <h3>Façades & extérieur</h3>
+            <p class="muted">
+              Nettoyage, réparation des fissures, sous-couche, peinture façade
+              résistante aux UV et intempéries.
+            </p>
+            <span class="chip">▶ Garantie 2 ans</span>
+          </article>
+          <article class="card">
+            <h3>Revêtements décoratifs</h3>
+            <p class="muted">
+              Enduits décoratifs, stucco, effet béton ciré, pose de papier peint
+              haut de gamme.
+            </p>
+            <span class="chip">▶ Conseils couleurs offerts</span>
+          </article>
+          <article class="card">
+            <h3>Préparation & rénovation</h3>
+            <p class="muted">
+              Enduisage, ponçage, rebouchage, traitement humidité légère,
+              protection des surfaces.
+            </p>
+            <span class="chip">▶ Propreté garantie</span>
+          </article>
+          <article class="card">
+            <h3>Locaux pros</h3>
+            <p class="muted">
+              Bureaux, boutiques, restaurants: travail de nuit/week‑end possible
+              pour limiter l'impact.
+            </p>
+            <span class="chip">▶ Planning flexible</span>
+          </article>
+          <article class="card">
+            <h3>Conseil couleur</h3>
+            <p class="muted">
+              Accompagnement dans le choix des teintes, échantillons et
+              nuanciers fournis.
+            </p>
+            <span class="chip">▶ Visite gratuite</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <h2>Réalisations récentes</h2>
+          <p class="muted">Avant / après et détails de finitions.</p>
+        </div>
+        <div class="gallery" aria-label="Galerie de photos">
+          <figure>
+            <img
+              src="./img/cicilia.jpg"
+              alt="Séjour rénové, murs blancs satinés"
+            />
+          </figure>
+          <figure>
+            <img
+              src="img/Hadi silvia.jpg"
+              alt="Chambre bleu nuit avec soubassement"
+            />
+          </figure>
+          <figure>
+            <img src="img/Hadi stico.jpg" alt="Façade rafraîchie, ton sable" />
+          </figure>
+          <figure>
+            <img
+              src="img/Peinture façade.jpg"
+              alt="Cuisine blanche, boiseries laquées"
+            />
+          </figure>
+          <figure>
+            <img
+              src="img/Peinture laque.jpg"
+              alt="Escalier avec contremarches noires"
+            />
+          </figure>
+          <figure>
+            <img src="img/background.jpg" alt="Salon avant/après" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="avis">
+      <div class="container">
+        <div class="section-head">
+          <h2>آراء زبائننا</h2>
+          <p class="muted">رضا الزبناء ديالنا هو أحسن دعاية لينا.</p>
+        </div>
+        <div class="grid g-2">
+          <article class="card quote">
+            <div class="avatar" aria-hidden="true"></div>
+            <blockquote>
+              <p>
+                الخدمة كانت زوينة بزاف، والموعد تحترم مزيان. الدار ولات بحال
+                جديدة.
+              </p>
+              <footer class="muted">— سلمى ب., المعاريف</footer>
+            </blockquote>
+          </article>
+          <article class="card quote">
+            <div class="avatar" aria-hidden="true"></div>
+            <blockquote>
+              <p>
+                عطاوني نصائح مزيانين فالألوان واللمسات الأخيرة كانوا غزالين.
+                كننصح بيهم بزاف.
+              </p>
+              <footer class="muted">— ياسين ح., الراسين</footer>
+            </blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA band -->
+    <section class="cta">
+      <div class="container wrap">
+        <div>
+          <h2 style="margin: 0">Besoin d'un devis rapide ?</h2>
+          <p class="muted" style="margin: 6px 0 0">
+            Envoyez vos surfaces, quelques photos et nous répondons sous 24h.
+          </p>
+        </div>
+        <div
+          style="
+            display: flex;
+            gap: 0.6rem;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+          "
+        >
+          <a class="btn" href="#contact">Formulaire de contact</a>
+          <a class="btn btn-outline" href="tel:+212631765693"
+            >Appeler maintenant</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <!-- Contact Form -->
+    <form
+      id="contactForm"
+      action="https://formsubmit.co/naciriayoub437@gmail.com"
+      method="POST"
+    >
+      <!-- Anti-spam -->
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+
+      <div class="form-group">
+        <label for="email">📧 Votre email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="exemple@mail.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="message">💬 Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Écrivez votre message ici..."
+          rows="5"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Remplacé file par lien de téléchargement -->
+      <div class="form-group">
+        <label for="photo">📎 Lien de votre fichier (Drive, Dropbox...)</label>
+        <input
+          type="file"
+          id="photo"
+          name="photo"
+          placeholder="Collez ici le lien du fichier"
+        />
+      </div>
+
+      <button type="submit">🚀 Envoyer</button>
+    </form>
+
+    <style>
+      form {
+        max-width: 450px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="email"],
+      input[type="file"],
+      textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        transition: 0.3s;
+        font-size: 14px;
+      }
+
+      input[type="email"]:focus,
+      textarea:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: linear-gradient(135deg, #007bff, #00c6ff);
+        color: white;
+        font-size: 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #0056b3, #0099cc);
+        transform: translateY(-2px);
+      }
+    </style>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const form = e.target;
+          const data = new FormData(form);
+
+          // 1️⃣ Send text via WhatsApp
+          const msg = encodeURIComponent(
+            `Email: ${data.get("email")}\nMessage: ${data.get("message")}`
+          );
+          window.open(`https://wa.me/212631765693?text=${msg}`, "_blank");
+
+          // 2️⃣ Submit form to email with file attachments
+          fetch(form.action, { method: form.method, body: data })
+            .then((response) =>
+              alert("Formulaire envoyé par email avec fichiers!")
+            )
+            .catch((err) => alert("Erreur lors de l'envoi: " + err));
+        });
+    </script>
+
+    <!-- Style Moderne -->
+    <style>
+      .contact-form {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 25px;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        border-radius: 18px;
+        color: white;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .contact-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-form label {
+        display: block;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border: none;
+        border-radius: 12px;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        transform: scale(1.03);
+        box-shadow: 0 0 8px #00c6ff;
+      }
+
+      .contact-form button {
+        width: 100%;
+        padding: 14px;
+        background: #00c6ff;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .contact-form button:hover {
+        background: #02a0d4;
+        transform: translateY(-3px);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <!-- social network -->
+    <!-- Floating Social Links -->
+    <div class="social-float">
+      <a
+        href="https://wa.me/212631765693"
+        target="_blank"
+        aria-label="WhatsApp"
+      >
+        <img src="img/whatApp_ayoub_logo-removebg-preview.png" alt="WhatsApp" />
+      </a>
+      <a
+        href="https://www.facebook.com/share/1FTgeTzg9d/"
+        target="_blank"
+        aria-label="Facebook"
+      >
+        <img
+          src="img/facebook_ayoub_logo-removebg-preview.png"
+          alt="Facebook"
+        />
+      </a>
+      <a
+        href="https://www.tiktok.com/@paintingayoub?_t=ZS-8z9WRnrjAME&_r=1"
+        target="_blank"
+        aria-label="TikTok"
+      >
+        <img src="img/tiktok_ayoub_logo-removebg-preview.png" alt="TikTok" />
+      </a>
+    </div>
+
+    <style>
+      .social-float {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 1000;
+      }
+
+      .social-float a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90px;
+        height: 90px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .social-float a:hover {
+        transform: translateX(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .social-float img {
+        width: 90px;
+        height: 90px;
+      }
+
+      @media (max-width: 900px) {
+        .social-float {
+          top: auto;
+          bottom: 20px;
+          right: 20px;
+          flex-direction: row;
+          transform: none;
+        }
+      }
+    </style>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container" style="padding: 32px 0">
+        <div class="cols">
+          <div>
+            <strong style="color: #fff">HomePainting</strong>
+            <p class="muted">
+              Ayoub Ennaciri, professionnel en peinture et rénovation à
+              Casablanca.
+            </p>
+          </div>
+          <div>
+            <h4 style="margin: 0 0 8px; color: #fff">Liens</h4>
+            <nav class="muted" style="display: grid; gap: 0.35rem">
+              <a href="#services">Services</a>
+              <a href="#portfolio">Réalisations</a>
+              <a href="#avis">Avis</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
+          <div>
+            <h4 style="margin: 0 0 8px; color: #fff">Horaires</h4>
+            <p class="muted">Lun–Sam: 09:00 – 18:00<br />Dimanche: fermé</p>
+          </div>
+        </div>
+        <div class="legal">
+          © <span id="year"></span> HomePainting • Tous droits réservés •
+          <a href="#">Mentions légales</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const btnMenu = document.getElementById("btnMenu");
+      const menu = document.getElementById("menu");
+      btnMenu?.addEventListener("click", () => menu.classList.toggle("open"));
+
+      // Simple client-side handlers (replace with your backend later)
+      function serialize(form) {
+        return Object.fromEntries(new FormData(form).entries());
+      }
+
+      document.getElementById("quickForm")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = serialize(e.target);
+        // Example: open WhatsApp pre-filled message
+        const msg = encodeURIComponent(
+          `Bonjour, je souhaite un devis:\nNom: ${data.name}\nTéléphone: ${
+            data.phone
+          }\nVille: ${data.city}\nProjet: ${data.message || ""}`
+        );
+        window.open(`https://wa.me/212631765693?text=${msg}`, "_blank");
+      });
+
+      document
+        .getElementById("contactForm")
+        ?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const data = serialize(e.target);
+          const subject = encodeURIComponent("Demande de devis – Site web");
+          const body = encodeURIComponent(
+            `Nom: ${data.name}\nEmail: ${data.email}\nTéléphone: ${
+              data.phone || ""
+            }\n\nMessage:\n${data.message || ""}`
+          );
+          window.location.href = `mailto:contact@votrepeintre.ma?subject=${subject}&body=${body}`;
+        });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
